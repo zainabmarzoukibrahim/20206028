@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                
+                git 'https://github.com/zainabmarzoukibrahim/20206028.git'
+            }
+        }
+
+        stage('Run Script') {
+            steps {
+                script {
+                    
+                    sh 'chmod +x script.sh'
+                    
+                    sh './script.sh'
+                }
+            }
+        }
+
+       
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully'
+        }
+        failure {
+            echo 'Pipeline failed'
+        }
+    }
+}
